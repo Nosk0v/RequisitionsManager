@@ -1,0 +1,40 @@
+﻿<Window x:Class="RequisitionsManager.ReqInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RequisitionsManager"
+        mc:Ignorable="d"
+        Title="ReqInfo" Height="450" Width="800">
+    <Grid>
+        
+        
+        <StackPanel>
+            <Label Content="Заявке"/>
+            <TextBox Name="tbReqName" Margin = "4"/>
+            <Label Content="Описание"/>
+            <TextBox Name="tbDescription" Margin = "4" Height="50"/>
+            <Label Content="Дата создания"/>
+            <DatePicker Name = "dpCreate"/>
+
+            <Label Content="Дата окончания"/>
+            <DatePicker Name = "dpDeadline"/>
+            <Label Content="Статус"/>
+            <ComboBox ItemsSource="{Binding StatusTypes}" 
+          SelectedValuePath="StatusID" 
+          SelectedValue="{Binding SelectedReq.Status, Mode=TwoWay}" 
+          DisplayMemberPath="StatusName" 
+          Name="cbType" Margin="4"/>
+            <Label Content="Исполнитель"/>
+            <ComboBox ItemsSource="{Binding Performers}" 
+          SelectedValuePath="PerformerId" 
+          SelectedValue="{Binding SelectedReq.PerformerReq, Mode=TwoWay}" 
+          DisplayMemberPath="FullName" 
+          Name="cbPerformer" Margin="4"/>
+
+
+            <Button Content="Сохранить" Margin="10 10 10 0" Click="Button_Click"></Button>
+            <Button Content="Назад" Margin="10" Click="Button_Click_1"></Button>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,54 @@
+﻿<Window x:Class="RequisitionsManager.ReqWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RequisitionsManager"
+        mc:Ignorable="d"
+        Title="ReqWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical" Margin="15" Grid.Row="0">
+            <Button Height="40" Content="Просмотр информации о заявке" Click="Button_Click"></Button>
+        </StackPanel>
+        <ListView Name="lvReq" Grid.Row="1" ItemsSource="{Binding Reqs}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                    <Setter Property="Padding" Value="10"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="600"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="0">                                                
+                        <Run Text="{Binding ReqName}" Foreground="#333" FontWeight="Bold"/>
+                        <LineBreak/>
+                          <Run Text="{Binding StatusType.StatusName}"/>
+                        <LineBreak/>
+                         <Run Text="Исполнитель "/>
+                            <LineBreak/>
+                         <Run Text="{Binding Performer.FullName}" Foreground="#000" FontWeight="Bold"/>
+                            
+                        </TextBlock>
+                        <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1"> 
+                        <Run Text="Дата создания: "/>
+                        <Run Text="{Binding CreateDate}" Foreground="#000" FontWeight="Bold"/>
+                        <LineBreak/>
+                         <Run Text="Срок сдачи: "/>
+                         <Run Text="{Binding Deadline}" Foreground="#000" FontWeight="Bold"/>
+                        </TextBlock>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Window>
